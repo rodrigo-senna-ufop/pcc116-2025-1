@@ -251,26 +251,12 @@ section PropLogic
 -- Exercício 9
 
   lemma ex9 : (¬ B → ¬ A) → (A → B) := by
-
-
-    intros H1
-
+    intros H1 H2
     rcases (em B) with B1 | B2
-    intros H2
     assumption
-    intros H2
-
-
-
-    rcases H1 with ⟨ H1 | H2 , H3 ⟩
-    intro h3
-    apply h1
-    exact h3
-    exact h2
-
-    intros H3
-
-
+    exfalso
+    apply H1 B2
+    assumption
 
 -- Exercício 10
 
