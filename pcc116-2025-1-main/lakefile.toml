@@ -1,0 +1,15 @@
+name = "pcc116"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["Pcc116"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+
+[[lean_lib]]
+name = "Pcc116"
