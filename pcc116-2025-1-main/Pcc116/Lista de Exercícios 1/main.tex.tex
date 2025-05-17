@@ -1,0 +1,961 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage{bussproofs}
+\usepackage{amsmath, amssymb}
+
+
+\title{Lista de exercícios 01 - PCC116}
+\author{RODRIGO SENNA DA SILVA}
+\date{Maio 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Item 1.5.7 - Prove os seguintes sequentes usando dedução natural. Tente demonstrá-los sem utilizar a regra {RAA}. }
+
+
+
+\textbf{(a)\[\{(P \land Q) \land R,\; S \land T\} \vdash Q \land S\]}
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \land Q) \land R$}
+  \RightLabel{\scriptsize{\{$\land _{EE}$\}}}
+  \UnaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\land _{ED}$\}}}
+  \UnaryInfC{$Q$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$S \land T$}  
+  \RightLabel{\scriptsize{\{$\land _{EE}$\}}}
+  \UnaryInfC{$S$}
+  \RightLabel{\scriptsize{\{$\land _{I}$\}}}
+  \BinaryInfC{$Q \land S$}
+\end{prooftree}
+
+
+
+\textbf{(b)\[\{(P \land Q) \land R\} \vdash (P \land R) \lor Z\]}
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \land Q) \land R$}
+  \RightLabel{\scriptsize{\{$\land _{EE}$\}}}
+  \UnaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\land _{EE}$\}}}
+  \UnaryInfC{$P$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \land Q) \land R$}
+  \RightLabel{\scriptsize{\{$\land _{ED}$\}}}
+  \UnaryInfC{$R$}
+  \RightLabel{\scriptsize{\{$\land _{I}$\}}}
+  \BinaryInfC{$P \land R^1$}
+  \RightLabel{\scriptsize{\{$\lor _{IE}\}^1$}}
+  \UnaryInfC{$(P \land R) \lor Z$}
+\end{prooftree}
+
+\textbf{(c)}
+\[
+\{P,\; P \rightarrow (P \rightarrow Q)\} \vdash Q
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow (P \rightarrow Q)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$P \rightarrow Q$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$Q$}
+\end{prooftree}
+
+\textbf{(d)}\[
+\vdash (P \land Q) \rightarrow P
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \land Q)^1$}
+  \RightLabel{\scriptsize{\{$\land _{EE}\}$}}
+  \UnaryInfC{$P$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$(P \land Q) \rightarrow P$}
+\end{prooftree}
+
+\textbf{(e)}
+\[
+\{P\} \vdash Q \rightarrow (P \land Q)
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$Q^1$}
+  \RightLabel{\scriptsize{\{$\land _I$\}}}
+  \BinaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$Q \rightarrow (P \land Q)$}
+\end{prooftree}
+
+\textbf{(f)}
+\[
+\{P\} \vdash (P \rightarrow Q) \rightarrow Q
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow Q^1$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$(P \rightarrow Q) \rightarrow Q$}
+\end{prooftree}
+
+\textbf{(g)}
+\[
+\vdash (P \land Q) \rightarrow (P \lor Q)
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \land Q^1$}
+  \RightLabel{\scriptsize{\{$\lor _{IE}$\}}}
+  \UnaryInfC{$P \lor Q$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \land Q^1$}
+  \RightLabel{\scriptsize{\{$\lor _{ID}$\}}}
+  \UnaryInfC{$P \lor Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \BinaryInfC{$(P \land Q) \rightarrow (P \lor Q)$}
+\end{prooftree}
+
+\textbf{(h)}
+\[
+\{Q \rightarrow (P \rightarrow R),\; \neg R,\; Q\} \vdash \neg P
+\]
+
+\begin{prooftree}
+  
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$Q \rightarrow (P \rightarrow R)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$P \rightarrow R$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\neg R$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$\neg P$}
+\end{prooftree}
+
+\textbf{(i)}
+\[
+\{P\} \vdash Q \rightarrow (P \land Q)
+\]
+
+\begin{prooftree}
+  \AxiomC{$P$}
+  \AxiomC{$Q^1$}
+  \RightLabel{\scriptsize{\{$\land _1$\}}}
+  \BinaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$Q \rightarrow (P \land Q)$}
+\end{prooftree}
+
+\textbf{(j)}
+\[
+\{(P \rightarrow R) \land (Q \rightarrow R),\; P \land Q\} \vdash Q \land R
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \rightarrow R) \land (Q \rightarrow R)$}
+  \RightLabel{\scriptsize{\{$\land _{ED}$\}}}
+  \UnaryInfC{$Q \rightarrow R$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\land _{ED}$\}}}
+  \UnaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$R$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\land _{ED}$\}}}
+  \UnaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\land _I$\}}}
+  \BinaryInfC{$Q \land R$}
+\end{prooftree}
+
+\textbf{(k)}
+\[
+\{P \rightarrow Q \rightarrow R,\; P \rightarrow Q\} \vdash P \rightarrow R
+\]
+
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow Q \rightarrow R$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P^1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E\}^1$}}
+  \BinaryInfC{$Q \rightarrow R$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow Q)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P^1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E\}^1$}}
+  \BinaryInfC{$P \rightarrow R$}
+\end{prooftree}
+
+
+\textbf{(l)}
+\[
+\{P \rightarrow Q,\; R \rightarrow S\} \vdash (P \lor R) \rightarrow (Q \lor S)
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow Q$}
+  \RightLabel{\scriptsize{\{$\lor _{IE}\}$}}
+  \UnaryInfC{$Q \lor S$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$R \rightarrow S$}
+  \RightLabel{\scriptsize{\{$\lor _{ID}\}$}}
+  \UnaryInfC{$Q \lor S$}
+  \RightLabel{\scriptsize{\{$\lor _{E}\}$}}
+  \BinaryInfC{$Q \lor S$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}$}}
+  \UnaryInfC{$(P \lor R) \rightarrow (Q \lor S)$}
+\end{prooftree}
+
+\textbf{(m)}
+\[
+\{Q \rightarrow R\} \vdash (P \rightarrow Q) \rightarrow (P \rightarrow R)
+\]
+
+\begin{prooftree}
+
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$Q \rightarrow R$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow Q^1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$R$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}$}}
+  \UnaryInfC{$P \rightarrow R$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$(P \rightarrow Q) \rightarrow (P \rightarrow R)$}
+\end{prooftree}
+
+\textbf{(n)}
+\[
+\{(P \land Q) \lor (P \land R)\} \vdash P \land (Q \lor R)
+\]
+
+\begin{prooftree}
+    \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \land Q) \lor (P \land R)$}
+  \RightLabel{\scriptsize{\{$\land _{IE}\}$}}
+  \UnaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\land _{EE}\}$}}
+  \UnaryInfC{$P$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \land Q) \lor (P \land R)$}
+  \RightLabel{\scriptsize{\{$\land _{EE}\}$}}
+  \UnaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\land _{EE}\}$}}
+  \UnaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\lor _{IE}\}$}}
+  \UnaryInfC{$Q \lor R$}
+  \RightLabel{\scriptsize{\{$\land _{I}\}$}}
+  \BinaryInfC{$P \land (Q \lor R)$}
+\end{prooftree}
+
+\textbf{(o)}
+\[
+\{P \rightarrow (Q \land R)\} \vdash (P \rightarrow Q) \land (P \rightarrow R)
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow (Q \land R)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P^1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _{E}\}$}}
+  \BinaryInfC{$Q \land R$}
+  \RightLabel{\scriptsize{\{$\land _{EE}\}$}}
+  \UnaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _{I}\}$}}
+  \UnaryInfC{$P \rightarrow Q$}  
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow (Q \land R)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P^1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _{E}\}^1$}}
+  \BinaryInfC{$Q \land R$}
+  \RightLabel{\scriptsize{\{$\land _{ED}\}$}}
+  \UnaryInfC{$R$}
+  \RightLabel{\scriptsize{\{$\rightarrow _{I}\}$}}
+  \UnaryInfC{$P \rightarrow R$}  
+  \RightLabel{\scriptsize{\{$\land _I\}$}}
+  \BinaryInfC{$(P \rightarrow Q) \land (P \rightarrow R)$}
+\end{prooftree}
+
+
+\textbf{ (p)}
+\[
+\{(P \rightarrow Q) \land (P \rightarrow R)\} \vdash P \rightarrow (Q \land R)
+\]
+
+\begin{prooftree}
+
+\AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \rightarrow Q) \land (P \rightarrow R)$}
+  \RightLabel{\scriptsize{\{$\land_{EE}$\}}}  
+  \UnaryInfC{$P\rightarrow Q$}
+  
+\AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}  
+  \UnaryInfC{$P_1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$Q$}
+
+\AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(P \rightarrow Q) \land (P \rightarrow R)$}  
+  \RightLabel{\scriptsize{\{$\land_{ED}$\}}}
+  \UnaryInfC{$P \rightarrow R$}
+\AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}  
+  \UnaryInfC{$P_1$}
+  
+  
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \BinaryInfC{$R$}
+  \RightLabel{\scriptsize{\{$\land _{I}\}$}}
+  \BinaryInfC{$Q \land R $}
+
+  
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$P \rightarrow (Q \land R)$}
+\end{prooftree}
+
+\textbf{(q)}
+\[
+\{P \rightarrow Q\} \vdash ((P \land Q) \rightarrow P) \land (P \rightarrow (P \land Q))
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P^1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}  
+  \UnaryInfC{$(P \land Q) \rightarrow P$}
+
+
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P^1$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _E$\}}}
+  \UnaryInfC{$Q$}
+  
+  \RightLabel{\scriptsize{\{$\land _{I}\}$}}
+  \BinaryInfC{$P \land Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}$}}  
+  \UnaryInfC{$P \rightarrow (P \land Q)$}
+
+
+
+  
+  \RightLabel{\scriptsize{\{$\land _{I}\}$}}
+  \BinaryInfC{$((P \land Q) \rightarrow P) \land (P \rightarrow (P \land Q))$}
+\end{prooftree}
+
+\textbf{(r)}
+\[
+\{P \rightarrow (Q \lor R),\; Q \rightarrow S,\; R \rightarrow S\} \vdash P \rightarrow S
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P \rightarrow (Q \lor R)$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$Q \lor R$}
+  \AxiomC{$Q \rightarrow S$}
+  \AxiomC{$R \rightarrow S$}
+  \RightLabel{\scriptsize{$\{\lor_{E}\}$}}
+  \TrinaryInfC{$S$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}$}}
+  \UnaryInfC{$P \rightarrow S$}
+\end{prooftree}
+
+\textbf{(s)}
+\[
+\vdash \neg P \rightarrow P \rightarrow P \rightarrow Q
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\neg P^1$}
+  
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$ P^2$}
+
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$\bot$}
+  \RightLabel{\scriptsize{\{$CTR\}$}}
+  \UnaryInfC{$Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}$}}
+  \UnaryInfC{$P \rightarrow Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^2$}}
+  \UnaryInfC{$P \rightarrow (P \rightarrow Q)$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$\neg P \rightarrow (P \rightarrow (P \rightarrow Q))$}
+\end{prooftree}
+
+\textbf{(t)}
+\[
+\{P \land Q \rightarrow R,\; R \rightarrow S,\; Q \land \neg S\} \vdash \neg P
+\]
+
+\begin{prooftree}
+   
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$Q \land \neg S$}
+  \RightLabel{\scriptsize{\{$\land ED$\}}}
+  \UnaryInfC{$\neg S$}  
+      \AxiomC{}
+      \RightLabel{\scriptsize{\{$_{ID}$\}}}
+      \UnaryInfC{$R \rightarrow S$}      
+          \AxiomC{}
+          \RightLabel{\scriptsize{\{$_{ID}$\}}}
+          \UnaryInfC{$P \land Q \rightarrow R$}              
+              \AxiomC{}
+              \RightLabel{\scriptsize{\{$_{ID}$\}}}
+              \UnaryInfC{$P$}              
+              \AxiomC{}
+              \RightLabel{\scriptsize{\{$_{ID}$\}}}
+              \UnaryInfC{$Q \land \neg S$}
+              \RightLabel{\scriptsize{\{$\land EE$\}}}
+              \UnaryInfC{$Q$}
+              \RightLabel{\scriptsize{\{$\land _{I}\}$}}
+              \BinaryInfC{$P \land Q$}              
+      \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+      \BinaryInfC{$R$}
+      \RightLabel{\scriptsize{\{$\rightarrow E$\}}}  
+  \BinaryInfC{$S$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$\bot$}
+  \RightLabel{\scriptsize{\{$CTR\}^1$}}
+  \UnaryInfC{$\neg P$}
+\end{prooftree}
+
+\textbf{(u)}\[
+\{(P \rightarrow Q) \rightarrow R,\; S \rightarrow \neg P,\; T,\; \neg S \land T \rightarrow Q\} \vdash R
+\]
+
+\begin{prooftree}
+            
+      \AxiomC{}
+      \RightLabel{\scriptsize{\{$_{ID}$\}}}
+      \UnaryInfC{$(P \rightarrow Q) \rightarrow R$}
+                \AxiomC{}
+                \RightLabel{\scriptsize{\{$_{ID}$\}}}
+                \UnaryInfC{$\neg S \land T \rightarrow Q$}
+                        \AxiomC{}
+                        \RightLabel{\scriptsize{\{$_{ID}$\}}}
+                        \UnaryInfC{$ \neg S^1$}
+                        \RightLabel{\scriptsize{\{$\rightarrow I$\}}}
+                        \UnaryInfC{$\neg P \rightarrow \neg S$}
+
+                        \AxiomC{}
+                        \RightLabel{\scriptsize{\{$_{ID}$\}}}
+                        \UnaryInfC{$S \rightarrow \neg P$}                                                       
+                        \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+                        \UnaryInfC{$\neg P$}
+                    \RightLabel{\scriptsize{\{$\rightarrow E\}$}}
+                    \BinaryInfC{$\neg S$}    
+                    \AxiomC{}
+                    \RightLabel{\scriptsize{\{$_{ID}$\}}}
+                    \UnaryInfC{$T$}
+                \RightLabel{\scriptsize{\{$\land I\}^1$}}
+                \BinaryInfC{$\neg S \land T$}
+            \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+            \BinaryInfC{$Q$}
+      \RightLabel{\scriptsize{\{$\rightarrow I$\}}}
+      \UnaryInfC{$P \rightarrow Q$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$R$}
+\end{prooftree}
+
+
+\textbf{(v)}
+\[
+\{(S \rightarrow P) \lor (T \rightarrow Q)\} \vdash (S \rightarrow Q) \lor (T \rightarrow P)
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$(S \rightarrow P) \lor (T \rightarrow Q)$}
+  \RightLabel{\scriptsize{\{$\lor EE$\}}}
+  \UnaryInfC{$S \rightarrow P$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \UnaryInfC{$P$}
+  \RightLabel{\scriptsize{\{$\rightarrow I$\}}}
+  \UnaryInfC{$T \rightarrow P$}
+  \RightLabel{\scriptsize{\{$\lor ID$\}}}
+  \UnaryInfC{$(S \rightarrow Q) \lor (T \rightarrow P)$}
+\end{prooftree}
+
+\textbf{(w)}
+\[
+\{\neg(P \rightarrow Q)\} \vdash Q \rightarrow P
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\neg(P \rightarrow Q)$}
+
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$Q^1$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}$}}
+  \UnaryInfC{$(P \rightarrow Q)$}
+
+  \BinaryInfC{$\bot$}
+  \RightLabel{\scriptsize{\{$CTR\}^1$}}
+  \UnaryInfC{$P$}
+  \RightLabel{\scriptsize{\{$\rightarrow _I\}^1$}}
+  \UnaryInfC{$Q \rightarrow P$}
+\end{prooftree}
+
+
+\section{Item 2.9 - Prove os seguintes sequentes usando dedução natural: }
+
+\textbf{(a)}
+\[
+\{\forall x.(P(x) \rightarrow Q(x))\} \vdash (\forall x.\neg Q(x)) \rightarrow (\forall x.\neg P(x))
+\]
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.(P(x) \rightarrow Q(x))$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.\neg Q(x)$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$\neg Q(a)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P(a)$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$Q(a)$}
+  \RightLabel{\scriptsize{\{$\neg E$\}}}
+  \BinaryInfC{$\bot$}
+  \RightLabel{\scriptsize{\{$\neg I$\}}}
+  \UnaryInfC{$\neg P(a)$}
+  \RightLabel{\scriptsize{\{$\forall I$\}}}
+  \UnaryInfC{$\forall x.\neg P(x)$}
+  \RightLabel{\scriptsize{\{$\rightarrow I$\}}}
+  \UnaryInfC{$(\forall x.\neg Q(x)) \rightarrow (\forall x.\neg P(x))$}
+\end{prooftree}
+
+
+
+\textbf{(b)}
+\[
+\{\forall x.(P(x) \rightarrow \neg Q(x))\} \vdash \neg(\exists x.(P(x) \land Q(x)))
+\]
+
+\begin{prooftree}
+      \AxiomC{}
+      \RightLabel{\scriptsize{\{$_{ID}$\}}}
+      \UnaryInfC{$\forall x.(P(x) \rightarrow \neg Q(x))$}
+              \AxiomC{}
+              \RightLabel{\scriptsize{\{$_{ID}$\}}}
+              \UnaryInfC{$\exists x.(P(x) \land Q(x))$}
+              \RightLabel{\scriptsize{[hipótese]}}
+              \UnaryInfC{$P(t) \land Q(t)$}
+              \RightLabel{\scriptsize{\{$\land E$\}}}
+              \UnaryInfC{$P(t)$}
+              \AxiomC{}
+              \RightLabel{\scriptsize{\{$_{ID}$\}}}
+              \UnaryInfC{$\forall x.(P(x) \rightarrow \neg Q(x))$}
+              \RightLabel{\scriptsize{\{$\forall E$\}}}
+              \UnaryInfC{$P(t) \rightarrow \neg Q(t)$}
+          \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+          \BinaryInfC{$\neg Q(t)$}
+          \AxiomC{}
+          \RightLabel{\scriptsize{\{$_{ID}$\}}}
+          \UnaryInfC{$P(t) \land Q(t)$}
+      \RightLabel{\scriptsize{\{$\land E$\}}}
+      \UnaryInfC{$Q(t)$}
+  \BinaryInfC{$\bot$}
+  \RightLabel{\scriptsize{\{$\neg I$\}}}
+  \UnaryInfC{$\neg \exists x.(P(x) \land Q(x))$}
+\end{prooftree}
+
+\textbf{(c)}
+\[
+\{\forall x.(A(x) \rightarrow (B(x) \lor C(x))),\; \forall x.\neg B(x)\} \vdash (\forall x.A(x)) \rightarrow (\forall x.C(x))
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.(A(x) \rightarrow (B(x) \lor C(x)))$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.\neg B(x)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{[hipótese]}}
+  \UnaryInfC{$\forall x.A(x)$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$A(t)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.(A(x) \rightarrow (B(x) \lor C(x)))$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$A(t) \rightarrow (B(t) \lor C(t))$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$B(t) \lor C(t)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.\neg B(x)$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$\neg B(t)$}
+  \RightLabel{\scriptsize{\{$\lor E$\}}}
+  \BinaryInfC{$C(t)$}
+  \RightLabel{\scriptsize{\{$\forall I$\}}}
+  \UnaryInfC{$\forall x.C(x)$}
+  \RightLabel{\scriptsize{\{$\rightarrow I$\}}}
+  \UnaryInfC{$(\forall x.A(x)) \rightarrow (\forall x.C(x))$}
+\end{prooftree}
+
+\textbf{(d)}
+\[
+\{\exists x.(P(x) \land Q(x)), \forall x.(P(x) \rightarrow R(x))\} \vdash \exists x.(R(x) \land Q(x))
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\exists x.(P(x) \land Q(x))$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.(P(x) \rightarrow R(x))$}
+  \RightLabel{\scriptsize{[hipótese]}}
+  \UnaryInfC{$P(t) \land Q(t)$}
+  \RightLabel{\scriptsize{\{$\land E$\}}}
+  \UnaryInfC{$P(t)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.(P(x) \rightarrow R(x))$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$P(t) \rightarrow R(t)$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$R(t)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$P(t) \land Q(t)$}
+  \RightLabel{\scriptsize{\{$\land E$\}}}
+  \UnaryInfC{$Q(t)$}
+  \RightLabel{\scriptsize{\{$\land I$\}}}
+  \BinaryInfC{$R(t) \land Q(t)$}
+  \RightLabel{\scriptsize{\{$\exists I$\}}}
+  \UnaryInfC{$\exists x.(R(x) \land Q(x))$}
+\end{prooftree}
+
+\textbf{(e)}
+\[
+\{\forall x.P(a, x, x),\; \forall x.\forall y.\forall z.(P(x, y, z) \rightarrow P(f(x), y, f(z)))\} \vdash P(f(a), a, f(a))
+\]
+
+\begin{prooftree}
+  \AxiomC{$\forall x.P(a, x, x)$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$P(a, a, a)$}
+  \AxiomC{$\forall x.\forall y.\forall z.(P(x, y, z) \rightarrow P(f(x), y, f(z)))$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$\forall y.\forall z.(P(a, y, z) \rightarrow P(f(a), y, f(z)))$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$\forall z.(P(a, a, z) \rightarrow P(f(a), a, f(z)))$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$P(a, a, a) \rightarrow P(f(a), a, f(a))$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$P(f(a), a, f(a))$}
+\end{prooftree}
+
+\textbf{(f)}
+\[
+\{\forall x.(P(x) \rightarrow Q(x))\} \vdash \forall x.P(x) \rightarrow \forall x.Q(x)
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.(P(x) \rightarrow Q(x))$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{[hipótese]}}
+  \UnaryInfC{$\forall x.P(x)$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$P(t)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.(P(x) \rightarrow Q(x))$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$P(t) \rightarrow Q(t)$}
+  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+  \BinaryInfC{$Q(t)$}
+  \RightLabel{\scriptsize{\{$\forall I$\}}}
+  \UnaryInfC{$\forall x.Q(x)$}
+  \RightLabel{\scriptsize{\{$\rightarrow I$\}}}
+  \UnaryInfC{$\forall x.P(x) \rightarrow \forall x.Q(x)$}
+\end{prooftree}
+
+\textbf{(g)}
+\[
+\{\exists x.\neg P(x)\} \vdash \neg \forall x.P(x)
+\]
+
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\exists x.\neg P(x)$}
+  \UnaryInfC{$\neg P(t)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.P(x)$}
+  \RightLabel{\scriptsize{\{$\forall E$\}}}
+  \UnaryInfC{$P(t)$}
+  \BinaryInfC{$\bot$}
+  \RightLabel{\scriptsize{\{$\neg I$\}}}
+  \UnaryInfC{$\neg \forall x.P(x)$}
+\end{prooftree}
+
+
+\section{Item 5.2.1 - Prove os seguintes teoremas}
+
+\textbf{(a)}. 
+Para todo \( n \in \mathbb{N} \),\[\sum_{i=0}^{n} 3^i=\frac{3^{n+1} - 1}{2}\]
+
+\textbf{Base da indução:} Para \( n = 0 \), temos:
+\[
+\sum_{i=0}^{0} 3^i = 3^0 = 1
+\]
+e
+\[
+\frac{3^{0+1} - 1}{2} = \frac{3 - 1}{2} = \frac{2}{2} = 1
+\]
+Logo, a base da indução é válida.
+
+\textbf{Passo indutivo:} Suponha que a fórmula seja válida para um certo \( n \in \mathbb{N} \), ou seja,
+\[
+\sum_{i=0}^{n} 3^i = \frac{3^{n+1} - 1}{2}
+\]
+Vamos provar que:
+\[
+\sum_{i=0}^{n+1} 3^i = \frac{3^{n+2} - 1}{2}
+\]
+
+De fato:
+\begin{align*}
+\sum_{i=0}^{n+1} 3^i &= \left( \sum_{i=0}^{n} 3^i \right) + 3^{n+1} \\
+&= \frac{3^{n+1} - 1}{2} + 3^{n+1} \\
+&= \frac{3^{n+1} - 1 + 2 \cdot 3^{n+1}}{2} \\
+&= \frac{3 \cdot 3^{n+1} - 1}{2} \\
+&= \frac{3^{n+2} - 1}{2}
+\end{align*}
+
+Portanto, a fórmula vale para \( n+1 \). Pelo princípio da indução matemática, a identidade é válida para todo \( n \in \mathbb{N} \).
+\\\\
+\\\\
+\textbf{(b)}. Para todo \( n \in \mathbb{N} \),
+\[
+\sum_{i=0}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}
+\]
+\textbf{Base:} Para \( n = 0 \),
+\[
+\sum_{i=0}^0 i^2 = 0, \quad \text{e} \quad \frac{0(0+1)(2 \cdot 0 + 1)}{6} = 0
+\]
+
+\textbf{Passo indutivo:} Suponha a fórmula válida para \( n \),
+\[
+\sum_{i=0}^n i^2 = \frac{n(n+1)(2n+1)}{6}
+\]
+Prove para \( n+1 \):
+\[
+\sum_{i=0}^{n+1} i^2 = \sum_{i=0}^n i^2 + (n+1)^2 = \frac{n(n+1)(2n+1)}{6} + (n+1)^2
+\]
+
+\[
+= \frac{n(n+1)(2n+1) + 6(n+1)^2}{6} = \frac{(n+1)\left[n(2n+1)+6(n+1)\right]}{6}
+\]
+\[
+= \frac{(n+1)(2n^2 + 7n + 6)}{6} = \frac{(n+1)(n+2)(2n+3)}{6}
+\]
+
+\[
+\Rightarrow \sum_{i=0}^{n+1} i^2 = \frac{(n+1)(n+2)(2n+3)}{6}
+\]
+Logo, a fórmula vale para todo \( n \in \mathbb{N} \).
+
+
+
+
+\\\\
+\\\\
+\textbf{(c)}. Para todo \( n \in \mathbb{N} \),
+\[
+\sum_{i=1}^{n} (8i - 5) = 4n^2 - n
+\]
+
+\textbf{Base:} Para \( n = 1 \),
+\[
+8(1) - 5 = 3, \quad 4(1)^2 - 1 = 3
+\]
+
+\textbf{Passo indutivo:} Suponha que
+\[
+\sum_{i=1}^n (8i - 5) = 4n^2 - n
+\]
+então
+\[
+\sum_{i=1}^{n+1} (8i - 5) = \sum_{i=1}^n (8i - 5) + (8(n+1) - 5)
+\]
+\[
+= 4n^2 - n + 8n + 3 = 4n^2 + 7n + 3 = 4(n+1)^2 - (n+1)
+\]
+\\\\
+\\\\
+\textbf{(d)}. Para todo \( n \geq 1 \),
+\[
+5 \mid (n^5 - n)
+\]
+
+\textbf{Base:} Para \( n = 1 \), temos \( 1^5 - 1 = 0 \), e \( 5 \mid 0 \)
+
+\textbf{Passo indutivo:} Suponha \( 5 \mid n^5 - n \), ou seja, \( n^5 - n = 5k \)
+
+Verificar para \( n+1 \):
+\[
+(n+1)^5 - (n+1) = n^5 + 5n^4 + 10n^3 + 10n^2 + 5n + 1 - n - 1 = (n^5 - n) + 5(n^4 + 2n^3 + 2n^2 + n)
+\]
+Como \( 5 \mid n^5 - n \) e o restante é múltiplo de 5, segue que \( 5 \mid (n+1)^5 - (n+1) \)
+\\\\
+\\\\
+\textbf{(e)}. Para todo \( n \geq 1 \),
+\[
+6 \mid (7^n - 1)
+\]
+Provar que \( 6 \mid (7^n - 1) \) para todo \( n \geq 1 \)
+
+```latex
+\textbf{Base:} Para \( n = 1 \), \( 7^1 - 1 = 6 \Rightarrow 6 \mid 6 \)
+
+\textbf{Passo indutivo:} Suponha \( 6 \mid (7^n - 1) \Rightarrow 7^n \equiv 1 \mod 6 \)
+
+Multiplicando ambos os lados por 7:
+\[
+7^{n+1} = 7 \cdot 7^n \equiv 7 \cdot 1 = 7 \equiv 1 \mod 6
+\Rightarrow 6 \mid (7^{n+1} - 1)
+\]
+\\\\
+\\\\
+\textbf{(f)}. Para todo \( n \geq 1 \),
+\[
+6 \mid (n^3 + 5n)
+\]
+Provar que \( 6 \mid (n^3 + 5n) \)
+
+```latex
+\textbf{Base:} Para \( n = 1 \), \( 1 + 5 = 6 \Rightarrow 6 \mid 6 \)
+
+\textbf{Passo indutivo:} Suponha \( 6 \mid (n^3 + 5n) \)
+
+\[
+(n+1)^3 + 5(n+1) = n^3 + 3n^2 + 3n + 1 + 5n + 5 = (n^3 + 5n) + 3n^2 + 3n + 6
+\]
+
+Como \( 6 \mid (n^3 + 5n) \) e os demais termos somam múltiplo de 6, temos \( 6 \mid (n+1)^3 + 5(n+1) \)
+\\\\
+\\\\
+\textbf{(g)}. Para todo \( n \in \mathbb{N} \),
+\[
+2 \mid (n^2 + n)
+\]
+Provar que \( 2 \mid (n^2 + n) \)
+
+```latex
+\textbf{Base:} Para \( n = 0 \), \( 0^2 + 0 = 0 \Rightarrow 2 \mid 0 \)
+
+\textbf{Passo indutivo:} Suponha \( 2 \mid n^2 + n \)
+
+\[
+(n+1)^2 + (n+1) = n^2 + 2n + 1 + n + 1 = (n^2 + n) + 2n + 2
+\]
+
+Como \( 2 \mid (n^2 + n) \) e \( 2n + 2 \) é par, então \( 2 \mid (n+1)^2 + (n+1) \)
+
+
+
+\end{document}
