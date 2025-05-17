@@ -127,8 +127,15 @@ section PropLogic
 
 -- *** Exercício 6
 
-  theorem ex6 : ((A → B) ∧ (A → C)) → A → (B ∧ C) := sorry
-
+  theorem ex6 : ((A → B) ∧ (A → C)) → A → (B ∧ C) := by
+    intros H1 H2
+    constructor
+    obtain ⟨ H3 , H4 ⟩ := H1
+    apply H3
+    exact H2
+    obtain ⟨ H3 , H4 ⟩ := H1
+    apply H4
+    exact H2
 
 
   -- A ↔ B = (A → B) ∧ (B → A)
@@ -198,7 +205,27 @@ section PropLogic
 
 -- Exercício 8
 
-  lemma ex8 : (A ∨ (B ∧ C)) → (A ∨ B) ∧ (A ∨ C) := sorry
+  lemma ex8 : (A ∨ (B ∧ C)) → (A ∨ B) ∧ (A ∨ C) := by
+    intros H
+    rcases H with hA | ⟨hB, hC⟩
+    constructor
+    ·
+      left
+      exact hA
+    ·
+      left
+      exact hA
+    constructor
+    ·
+      right
+      exact hB
+    ·
+      right
+      exact hC
+
+
+
+
 
 -- Lógica clássica
 
@@ -223,10 +250,36 @@ section PropLogic
 
 -- Exercício 9
 
-  lemma ex9 : (¬ B → ¬ A) → (A → B) := sorry
+  lemma ex9 : (¬ B → ¬ A) → (A → B) := by
+
+
+    intros H1
+
+    rcases (em B) with B1 | B2
+    intros H2
+    assumption
+    intros H2
+
+
+
+    rcases H1 with ⟨ H1 | H2 , H3 ⟩
+    intro h3
+    apply h1
+    exact h3
+    exact h2
+
+    intros H3
+
+
 
 -- Exercício 10
 
-  lemma ex10 : ((A → B) → A) → A := sorry
+  lemma ex10 : ((A → B) → A) → A := by
+    intros H1
+    rcases (em A) with A1 | A2
+    exact A1
+    apply H1
+    intros H2
+    contradiction
 
 end PropLogic
