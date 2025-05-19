@@ -627,9 +627,7 @@
 \]
 
 \begin{prooftree}
-      \AxiomC{}
-      \RightLabel{\scriptsize{\{$_{ID}$\}}}
-      \UnaryInfC{$\forall x.(P(x) \rightarrow \neg Q(x))$}
+      
               \AxiomC{}
               \RightLabel{\scriptsize{\{$_{ID}$\}}}
               \UnaryInfC{$\exists x.(P(x) \land Q(x))$}
@@ -642,8 +640,8 @@
               \UnaryInfC{$\forall x.(P(x) \rightarrow \neg Q(x))$}
               \RightLabel{\scriptsize{\{$\forall E$\}}}
               \UnaryInfC{$P(t) \rightarrow \neg Q(t)$}
-          \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
-          \BinaryInfC{$\neg Q(t)$}
+      \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+      \BinaryInfC{$\neg Q(t)$}
           \AxiomC{}
           \RightLabel{\scriptsize{\{$_{ID}$\}}}
           \UnaryInfC{$P(t) \land Q(t)$}
@@ -661,33 +659,49 @@
 
 \begin{prooftree}
   \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \RightLabel{\scriptsize{$\{ID\}$}}
   \UnaryInfC{$\forall x.(A(x) \rightarrow (B(x) \lor C(x)))$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.\neg B(x)$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{[hipótese]}}
-  \UnaryInfC{$\forall x.A(x)$}
-  \RightLabel{\scriptsize{\{$\forall E$\}}}
-  \UnaryInfC{$A(t)$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.(A(x) \rightarrow (B(x) \lor C(x)))$}
-  \RightLabel{\scriptsize{\{$\forall E$\}}}
-  \UnaryInfC{$A(t) \rightarrow (B(t) \lor C(t))$}
-  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
-  \BinaryInfC{$B(t) \lor C(t)$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.\neg B(x)$}
-  \RightLabel{\scriptsize{\{$\forall E$\}}}
-  \UnaryInfC{$\neg B(t)$}
-  \RightLabel{\scriptsize{\{$\lor E$\}}}
-  \BinaryInfC{$C(t)$}
-  \RightLabel{\scriptsize{\{$\forall I$\}}}
+
+  
+
+      
+      \RightLabel{\scriptsize{[hipótese]}}
+      \UnaryInfC{$\forall x.A(x)$}
+
+      \RightLabel{\scriptsize{$\forall E$}}
+      \UnaryInfC{$A(t)$}
+
+      \AxiomC{}
+      \RightLabel{\scriptsize{$\{ID\}$}}
+      \UnaryInfC{$\forall x.(A(x) \rightarrow (B(x) \lor C(x)))$}
+
+      \RightLabel{\scriptsize{$\forall E$}}
+      \UnaryInfC{$A(t) \rightarrow (B(t) \lor C(t))$}
+    \RightLabel{\scriptsize{$\rightarrow E$}}
+    \BinaryInfC{$B(t) \lor C(t)$}
+      \AxiomC{}
+      \RightLabel{\scriptsize{$\{ID\}$}}
+      \UnaryInfC{$\forall x.\neg B(x)$}
+      \RightLabel{\scriptsize{$\forall E$}}
+      \UnaryInfC{$\neg B(t)$}
+      \AxiomC{}
+      \RightLabel{\scriptsize{$\{ID\}$}}
+      \UnaryInfC{$\forall x.\neg B(x)$}
+      \RightLabel{\scriptsize{[hipótese]}}
+      \UnaryInfC{$B(t)$}
+      \RightLabel{\scriptsize{$\rightarrow E$}}
+    \BinaryInfC{$\bot$}
+    \RightLabel{\scriptsize{$\bot E$}}
+    \UnaryInfC{$C(t)$}
+    \AxiomC{}
+    \RightLabel{\scriptsize{[hipótese]}}
+    \UnaryInfC{$C(t)$}
+
+  \RightLabel{\scriptsize{$\lor E$}}
+  \TrinaryInfC{$C(t)$}
+  \RightLabel{\scriptsize{$\forall I$}}
   \UnaryInfC{$\forall x.C(x)$}
-  \RightLabel{\scriptsize{\{$\rightarrow I$\}}}
+  \RightLabel{\scriptsize{$\rightarrow I$}}
   \UnaryInfC{$(\forall x.A(x)) \rightarrow (\forall x.C(x))$}
 \end{prooftree}
 
@@ -697,28 +711,27 @@
 \]
 
 \begin{prooftree}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\exists x.(P(x) \land Q(x))$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.(P(x) \rightarrow R(x))$}
-  \RightLabel{\scriptsize{[hipótese]}}
-  \UnaryInfC{$P(t) \land Q(t)$}
-  \RightLabel{\scriptsize{\{$\land E$\}}}
-  \UnaryInfC{$P(t)$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.(P(x) \rightarrow R(x))$}
-  \RightLabel{\scriptsize{\{$\forall E$\}}}
-  \UnaryInfC{$P(t) \rightarrow R(t)$}
-  \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
-  \BinaryInfC{$R(t)$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$P(t) \land Q(t)$}
-  \RightLabel{\scriptsize{\{$\land E$\}}}
-  \UnaryInfC{$Q(t)$}
+      \AxiomC{}
+      \RightLabel{\scriptsize{\{$_{ID}$\}}}
+      \UnaryInfC{$\forall x.(P(x) \rightarrow R(x))$}
+      \RightLabel{\scriptsize{[hipótese]}}
+      \UnaryInfC{$P(t) \land Q(t)$}
+      \RightLabel{\scriptsize{\{$\land E$\}}}
+      \UnaryInfC{$P(t)$}
+      \AxiomC{}
+      \RightLabel{\scriptsize{\{$_{ID}$\}}}
+      \UnaryInfC{$\forall x.(P(x) \rightarrow R(x))$}
+      \RightLabel{\scriptsize{\{$\forall E$\}}}
+      \UnaryInfC{$P(t) \rightarrow R(t)$}
+    \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
+    \BinaryInfC{$R(t)$}
+    \AxiomC{}
+    \RightLabel{\scriptsize{\{$_{ID}$\}}}
+    \UnaryInfC{$\forall x.(P(x) \rightarrow R(x))$}
+    \RightLabel{\scriptsize{[hipótese]}}
+    \UnaryInfC{$P(t) \land Q(t)$}
+    \RightLabel{\scriptsize{\{$\land E$\}}}
+    \UnaryInfC{$Q(t)$}
   \RightLabel{\scriptsize{\{$\land I$\}}}
   \BinaryInfC{$R(t) \land Q(t)$}
   \RightLabel{\scriptsize{\{$\exists I$\}}}
@@ -731,10 +744,14 @@
 \]
 
 \begin{prooftree}
-  \AxiomC{$\forall x.P(a, x, x)$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.P(a, x, x)$}
   \RightLabel{\scriptsize{\{$\forall E$\}}}
   \UnaryInfC{$P(a, a, a)$}
-  \AxiomC{$\forall x.\forall y.\forall z.(P(x, y, z) \rightarrow P(f(x), y, f(z)))$}
+  \AxiomC{}
+  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \UnaryInfC{$\forall x.\forall y.\forall z.(P(x, y, z) \rightarrow P(f(x), y, f(z)))$}
   \RightLabel{\scriptsize{\{$\forall E$\}}}
   \UnaryInfC{$\forall y.\forall z.(P(a, y, z) \rightarrow P(f(a), y, f(z)))$}
   \RightLabel{\scriptsize{\{$\forall E$\}}}
@@ -751,19 +768,16 @@
 \]
 
 \begin{prooftree}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.(P(x) \rightarrow Q(x))$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{[hipótese]}}
-  \UnaryInfC{$\forall x.P(x)$}
-  \RightLabel{\scriptsize{\{$\forall E$\}}}
-  \UnaryInfC{$P(t)$}
-  \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.(P(x) \rightarrow Q(x))$}
-  \RightLabel{\scriptsize{\{$\forall E$\}}}
-  \UnaryInfC{$P(t) \rightarrow Q(t)$}
+    \AxiomC{}
+    \RightLabel{\scriptsize{\{$_{ID}$\}}}
+    \UnaryInfC{$\forall x.P(x)$}
+    \RightLabel{\scriptsize{\{$\forall E$\}}}
+    \UnaryInfC{$P(t)$}
+    \AxiomC{}
+    \RightLabel{\scriptsize{\{$_{ID}$\}}}
+    \UnaryInfC{$\forall x.(P(x) \rightarrow Q(x))$}
+    \RightLabel{\scriptsize{\{$\forall E$\}}}
+    \UnaryInfC{$P(t) \rightarrow Q(t)$}
   \RightLabel{\scriptsize{\{$\rightarrow E$\}}}
   \BinaryInfC{$Q(t)$}
   \RightLabel{\scriptsize{\{$\forall I$\}}}
@@ -772,25 +786,32 @@
   \UnaryInfC{$\forall x.P(x) \rightarrow \forall x.Q(x)$}
 \end{prooftree}
 
-\textbf{(g)}
+\textbf{(g)}  
 \[
 \{\exists x.\neg P(x)\} \vdash \neg \forall x.P(x)
 \]
 
 \begin{prooftree}
   \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
+  \RightLabel{\scriptsize{\{ID\}}}
   \UnaryInfC{$\exists x.\neg P(x)$}
-  \UnaryInfC{$\neg P(t)$}
+
   \AxiomC{}
-  \RightLabel{\scriptsize{\{$_{ID}$\}}}
-  \UnaryInfC{$\forall x.P(x)$}
-  \RightLabel{\scriptsize{\{$\forall E$\}}}
-  \UnaryInfC{$P(t)$}
+  \RightLabel{\scriptsize{\{ID\}}}
+  \UnaryInfC{$P(x)^1$}
+  \RightLabel{\scriptsize{$\forall E$}}
+  \UnaryInfC{$\exists x.P(x)$}
+
+  \RightLabel{\scriptsize{$\bot$}}
   \BinaryInfC{$\bot$}
-  \RightLabel{\scriptsize{\{$\neg I$\}}}
+
+  \RightLabel{\scriptsize{\{$\neg I\}^1$}}
+  \UnaryInfC{$\neg P(x)$}
+
+  \RightLabel{\scriptsize{\{$\forall I$\}}}
   \UnaryInfC{$\neg \forall x.P(x)$}
 \end{prooftree}
+
 
 
 \section{Item 5.2.1 - Prove os seguintes teoremas}
@@ -862,8 +883,6 @@ Logo, a fórmula vale para todo \( n \in \mathbb{N} \).
 
 
 
-\\\\
-\\\\
 \textbf{(c)}. Para todo \( n \in \mathbb{N} \),
 \[
 \sum_{i=1}^{n} (8i - 5) = 4n^2 - n
@@ -909,7 +928,7 @@ Como \( 5 \mid n^5 - n \) e o restante é múltiplo de 5, segue que \( 5 \mid (n
 \]
 Provar que \( 6 \mid (7^n - 1) \) para todo \( n \geq 1 \)
 
-```latex
+
 \textbf{Base:} Para \( n = 1 \), \( 7^1 - 1 = 6 \Rightarrow 6 \mid 6 \)
 
 \textbf{Passo indutivo:} Suponha \( 6 \mid (7^n - 1) \Rightarrow 7^n \equiv 1 \mod 6 \)
@@ -927,7 +946,7 @@ Multiplicando ambos os lados por 7:
 \]
 Provar que \( 6 \mid (n^3 + 5n) \)
 
-```latex
+
 \textbf{Base:} Para \( n = 1 \), \( 1 + 5 = 6 \Rightarrow 6 \mid 6 \)
 
 \textbf{Passo indutivo:} Suponha \( 6 \mid (n^3 + 5n) \)
@@ -945,8 +964,6 @@ Como \( 6 \mid (n^3 + 5n) \) e os demais termos somam múltiplo de 6, temos \( 6
 \]
 Provar que \( 2 \mid (n^2 + n) \)
 
-```latex
-\textbf{Base:} Para \( n = 0 \), \( 0^2 + 0 = 0 \Rightarrow 2 \mid 0 \)
 
 \textbf{Passo indutivo:} Suponha \( 2 \mid n^2 + n \)
 
