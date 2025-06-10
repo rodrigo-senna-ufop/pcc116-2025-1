@@ -328,18 +328,12 @@ lemma plus_le_compat
   intros n m p h
   induction p with
   | zero =>
-    -- No caso zero, queremos provar (n .+. zero) .<=. (m .+. zero)
-    -- Que se simplifica para n .<=. m
-    -- E isso já é a nossa hipótese h_le
     simp [plus_zero_r]
     exact h
   | succ p' IH =>
-    -- No caso succ, queremos provar (n .+. succ p') .<=. (m .+. succ p')
-    -- Isso se simplifica para succ (n .+. p') .<=. succ (m .+. p')
-    -- Que por definição de leb é equivalente a (n .+. p') .<=. (m .+. p')
-    -- Que é exatamente a hipótese de indução IH
-    simp [plus, IH]
-    apply IH
+    simp [plus]
+
+
 ----------------------------------------------------------------------------------------------------
 
 
