@@ -30,15 +30,15 @@ def listRepeat {A : Type}(n : ℕ)(x : A) : list A :=
 -- append
 def cat {A : Type}(xs ys : list A) : list A :=
   match xs with
-  | nil => ys                         -- (1)
-  | cons x xs' => cons x (cat xs' ys) -- (2)
+  | nil => ys
+  | cons x xs' => cons x (cat xs' ys)
 
 infixl:60 " .++. " => cat
 
 def reverse {A : Type}(xs : list A) : list A :=
   match xs with
-  | nil => nil   -- (1)
-  | cons x' xs' => reverse xs' .++. (cons x' nil) -- (2)
+  | nil => nil
+  | cons x' xs' => reverse xs' .++. (cons x' nil)
 
 def rev {A : Type}(xs ac : list A) : list A :=
   match xs with
@@ -51,14 +51,10 @@ lemma cat_size {A}(xs ys : list A) :
   size (xs .++. ys) = size xs + size ys := by
   induction xs with
   | nil =>
--- Caso base: xs = nil
--- size (nil .++. ys) = size ys
--- size nil = 0
--- 0 + size ys = size ys
+
 simp [cat, size]
   | cons x xs' ih =>
--- Caso indutivo: xs = cons x xs'
--- Hipótese de indução: size (xs' .++. ys) = size xs' + size ys
+
     simp [cat, size]
     rw [ih]
     rw [Nat.succ_add]
@@ -68,13 +64,10 @@ lemma listRepeat_size {A}(x : A)(n : ℕ) :
   size (listRepeat n x) = n := by
   induction n with
   | zero =>
--- Caso base: n = 0
--- listRepeat 0 x = nil → size nil = 0
+
     simp [listRepeat, size]
   | succ n' ih =>
--- Caso indutivo: n = succ n'
--- listRepeat (n'+1) x = cons x (listRepeat n' x)
--- size (cons x (listRepeat n' x)) = 1 + size (listRepeat n' x)
+
     simp [listRepeat, size]
     rw [ih]
 
@@ -83,12 +76,10 @@ lemma reverse_size {A}(xs : list A) :
   size (reverse xs) = size xs := by
   induction xs with
   | nil =>
--- Caso base: reverse nil = nil → size nil = 0
+
     simp [reverse, size]
   | cons x xs' ih =>
--- reverse (cons x xs') = reverse xs' ++ [x]
--- size (reverse xs' ++ [x]) = size (reverse xs') + 1
--- Pela hipótese de indução: size (reverse xs') = size xs'
+
     simp [reverse, size, cat]
     rw [cat_size, ih]
     simp [size]
@@ -98,10 +89,10 @@ lemma cat_assoc {A}(xs ys zs : list A)
   : xs .++. ys .++. zs = xs .++. (ys .++. zs) := by
   induction xs with
   | nil =>
--- Caso base: xs = nil
+
     simp [cat]
   | cons x xs' ih =>
--- Caso indutivo: xs = cons x xs'
+
     simp [cat]
     rw [ih]
 
@@ -110,10 +101,10 @@ lemma cat_nil_r {A}(xs : list A)
   : xs .++. nil = xs := by
   induction xs with
   | nil =>
--- Caso base: nil .++. nil = nil
+
     simp [cat]
   | cons x xs' ih =>
--- Caso indutivo: cons x xs' .++. nil = cons x (xs' .++. nil)
+
     simp [cat]
     rw [ih]
 
@@ -123,6 +114,7 @@ lemma reverse_cat {A}(xs ys : list A) :
   induction xs with
   | nil =>
     simp [reverse, cat]
+    simp [reverse, cat_nil_r]
   | cons x xs' ih =>
     simp [reverse, cat]
     rw [ih]
@@ -147,11 +139,8 @@ lemma reverse_rev {A}(xs : list A) :
   | nil =>
     simp [reverse, rev]
   | cons x xs' ih =>
-    simp [reverse, rev, cat]
+    simp [reverse, rev]
     rw [ih]
-    rw [←cat_nil_r (rev xs' nil)]
-    rw [←cat_assoc]
-
 
 
 section MAP
@@ -251,7 +240,7 @@ section FILTER
     simp [filter, size]
     split_ifs with h
     · simp [size]
-      apply Nat.succ_le_succ
+
       exact ih
     · exact Nat.le_succ_of_le ih
 
@@ -266,9 +255,9 @@ section FILTER
     | cons x xs' ih =>
       simp [filter]
       split_ifs with hq hp hpq
-      · simp [hpq] at *
+      · simp [hp] at *
         exact congrArg (cons x) ih
-      · simp [hpq] at *
+      · simp [hp] at *
         exact ih
       · simp [hpq] at *
         exact ih
@@ -327,20 +316,17 @@ section MEMBERSHIP
     cases decEq x y with
     | isTrue heq =>
       simp [heq]
-      -- Queremos mostrar: true = member x (reverse ys ++ [y])
-      -- Basta mostrar que x ∈ reverse ys ++ [y]
       apply member_cat_true_right
       simp [member, heq]
     | isFalse hne =>
       simp [hne]
       rw [ih]
-      -- Queremos mostrar: member x (reverse ys) = member x (reverse ys ++ [y])
+
       apply propext
       apply Iff.intro
       · intro h
         exact member_cat_true_left x (reverse ys) [y] h
       · intro h
-        -- Aqui usamos que x ≠ y, então só pode estar em reverse ys
         simp [member] at h
         cases decEq x y with
         | isTrue hxy => contradiction

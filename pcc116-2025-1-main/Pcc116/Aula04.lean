@@ -321,17 +321,57 @@ lemma plus_zero_r (n : N) : n .+. zero = n := by
   | zero => rfl
   | succ n' IH => simp [plus, IH]
 
+
+lemma le_succ : ∀ n m, n .<=. m → n .<=. (succ m) := by
+  intros n
+  induction n <;> intros m H1
+  ·
+    simp [leb]
+  ·
+    rename_i n1 IH
+    cases m
+    ·
+      simp [leb] at *
+    ·
+      rename_i m
+      simp [leb] at *
+      simp [IH, H1]
+
 lemma plus_le_compat
   : ∀ n m p, n .<=. m →
              (n .+. p) .<=. (m .+. p) := by
-
-  intros n m p h
-  induction p with
-  | zero =>
-    simp [plus_zero_r]
-    exact h
-  | succ p' IH =>
-    simp [plus]
+  intros n
+  induction n
+  ·
+    intros m p
+    cases p <;> intros H1
+    ·
+      simp [plus, plus_0_r, H1]
+    ·
+      rename_i p
+      cases m
+      ·
+        simp [plus, leb_refl]
+      ·
+        rename_i m
+        simp [plus, plus_comm m _, leb]
+        apply le_succ
+        simp [le_plus_l]
+  ·
+    rename_i n' IH
+    intros m p H1
+    cases p
+    ·
+      simp [plus_0_r, H1]
+    ·
+      rename_i p
+      cases m
+      ·
+        simp [leb] at *
+      ·
+        rename_i m
+        simp [leb, plus, plus_comm _ p.succ] at *
+        simp [plus_comm p _, IH, H1]
 
 
 ----------------------------------------------------------------------------------------------------
